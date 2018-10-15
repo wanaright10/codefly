@@ -57,7 +57,7 @@ Note: you can use Mather.replaceAll() instead
 > isNullOrEmpty
 
 **ISO88591ToUTF8**
->i.e. encodeToEncode("Ã¼zÃ¼m baÄlarÄ±", "ISO-8859-1", "UTF-8") -> üzüm bağları
+>i.e. ISO88591ToUTF8("Ã¼zÃ¼m baÄlarÄ±") -> üzüm bağları
 
 **mask**
 >i.e. mask(abcdefghijk, [4], \*) -> \*\*\*\*\*\*\*hijk  
