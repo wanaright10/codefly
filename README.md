@@ -60,15 +60,15 @@ Note: you can use Mather.replaceAll() instead
 >i.e. encodeToEncode("Ã¼zÃ¼m baÄlarÄ±", "ISO-8859-1", "UTF-8") -> üzüm bağları
 
 **mask**
->i.e. mask(abcdefghijk, [4], *) -> *******hijk  
+>i.e. mask(abcdefghijk, [4], \*) -> \*\*\*\*\*\*\*hijk  
 >i.e. mask(abcdefghijk, [3], $) -> $$$$$$$$ijk  
->i.e. mask(abcdefghijk, [-4], *) -> abcd*******  
->i.e. mask(abcdefghijk, [3, -4], *) -> abcd****ijk  
->i.e. mask(abcdefghijk, [-4, 3], *) -> abcd****ijk  
+>i.e. mask(abcdefghijk, [-4], \*) -> abcd\*\*\*\*\*\*\*  
+>i.e. mask(abcdefghijk, [3, -4], \*) -> abcd\*\*\*\*ijk  
+>i.e. mask(abcdefghijk, [-4, 3], \*) -> abcd\*\*\*\*ijk  
 >  
->i.e. mask(abcdefghijk, 0, 6, *) -> *******hijk  
+>i.e. mask(abcdefghijk, 0, 6, \*) -> \*\*\*\*\*\*\*hijk  
 >i.e. mask(abcdefghijk, 0, 7, $) -> $$$$$$$$ijk  
->i.e. mask(abcdefghijk, 4, 7, *) -> abcd****ijk  
+>i.e. mask(abcdefghijk, 4, 7, \*) -> abcd\*\*\*\*ijk  
 
 **randomString**
 >generate random string of length or char pool given.  
