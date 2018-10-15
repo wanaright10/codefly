@@ -111,5 +111,6 @@ Note: you can use Mather.replaceAll() instead
 **unescapeHTML**
 >i.e. unescapeHTML("\&lt;a href=\&quot;#\&quot;\&gt;Me \&amp; you\&lt;/a\&gt;") -> \<a href="#">Me & you\</a>
 
-## CSArray
+## CFArray
 TBC...
+(or you can refer the javaDoc in project or view all methods in eclipse/IDEA)
