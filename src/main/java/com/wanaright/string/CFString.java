@@ -84,7 +84,7 @@ public class CFString {
 
     /**
      * findAndReplace("abc", "b", String::toUpperCase) -> aBc
-     * Note: if you are using Java9 or higher version, you can use Mather.replaceAll() instead
+     * Note: you can use Mather.replaceAll() instead
      *
      * @param string source string want to capitalize first letter
      * @param regex  the regex pattern for finding
