@@ -109,7 +109,7 @@ Note: you can use Mather.replaceAll() instead
 >i.e. ulrJoin("http://www.wanaright.com", "a", "b/cd", "?foo=123", "?goo=foo") -> http://www.wanaright.com/a/b/cd?foo=123&goo=foo
 
 **unescapeHTML**
->i.e. unescapeHTML("\&lt;a href=\&quot;#\&quot;\&gt;Me \&amp; you\&lt;/a\&gt;") -> \<a href="#">Me & you\</a>(https://github.com/30-seconds/30-seconds-of-code)
+>i.e. unescapeHTML("\&lt;a href=\&quot;#\&quot;\&gt;Me \&amp; you\&lt;/a\&gt;") -> \<a href="#">Me & you\</a>
 
 ## CSArray
 TBC...
