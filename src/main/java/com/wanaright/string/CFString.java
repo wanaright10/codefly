@@ -401,7 +401,7 @@ public class CFString {
         try {
             MessageDigest md5 = MessageDigest.getInstance("MD5");
             byte[] digest = md5.digest(string.getBytes());
-            return String.format("%032x%n", new BigInteger(1, digest));
+            return String.format("%032x", new BigInteger(1, digest));
         } catch (NoSuchAlgorithmException e) {
             return null;
         }
