@@ -9,6 +9,7 @@ public class CFThread {
     private static volatile ThreadLocal<Object> THREAD_LOCAL;
     private List<Runnable> paralleTasks;
     private CountDownLatch countDownLatch;
+    private boolean block;
 
     public static void putThreadObject(Object object) {
         newThreadLocal();
@@ -31,7 +32,21 @@ public class CFThread {
     public static CFThread prepareParalleTasks(int taskNumber) {
         CFThread cfThread = new CFThread();
         cfThread.setParalleTasks(new ArrayList<>(taskNumber));
-        cfThread.setCountDownLatch(new CountDownLatch(taskNumber));
+        return cfThread;
+    }
+
+    public static CFThread prepareParalleTasks(boolean block, int taskNumber) {
+        CFThread cfThread = prepareParalleTasks(taskNumber);
+        if (block) {
+            cfThread.setBlock(true);
+            cfThread.setCountDownLatch(new CountDownLatch(taskNumber));
+        }
+        return cfThread;
+    }
+
+    public static CFThread prepareParalleTasks(boolean block) {
+        CFThread cfThread = prepareParalleTasks();
+        cfThread.setBlock(block);
         return cfThread;
     }
 
@@ -46,21 +61,36 @@ public class CFThread {
         return this;
     }
 
-    public CFThread execute() {
-        if (this.countDownLatch == null) {
+    public void execute() {
+        runAllTasks();
+        if (this.block) {
+            waitingForTasksDone();
+        }
+    }
+
+    public void execute(long timeout, TimeUnit unit) {
+        runAllTasks();
+        if (this.block) {
+            waitingForTasksDone(timeout, unit);
+        }
+    }
+
+    private void runAllTasks() {
+        if (this.countDownLatch == null && this.block) {
             countDownLatch = new CountDownLatch(this.paralleTasks.size());
         }
 
         paralleTasks.parallelStream()
                 .map(task -> new Thread(() -> {
                     task.run();
-                    countDownLatch.countDown();
+                    if (this.block) {
+                        countDownLatch.countDown();
+                    }
                 }))
-                .forEach(Thread::run);
-        return this;
+                .forEach(Thread::start);
     }
 
-    public void waitingForTasksDone() {
+    private void waitingForTasksDone() {
         try {
             this.countDownLatch.await();
         } catch (InterruptedException e) {
@@ -68,7 +98,7 @@ public class CFThread {
         }
     }
 
-    public void waitingForTasksDone(long timeout, TimeUnit unit) {
+    private void waitingForTasksDone(long timeout, TimeUnit unit) {
         try {
             this.countDownLatch.await(timeout, unit);
         } catch (InterruptedException e) {
@@ -82,6 +112,10 @@ public class CFThread {
 
     private void setCountDownLatch(CountDownLatch countDownLatch) {
         this.countDownLatch = countDownLatch;
+    }
+
+    public void setBlock(boolean block) {
+        this.block = block;
     }
 
     //    /**

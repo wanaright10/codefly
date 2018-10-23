@@ -35,7 +35,7 @@ public class CFThreadTest {
 
     @Test
     public void paralleTasks() {
-        CFThread thread = CFThread.prepareParalleTasks()
+        CFThread.prepareParalleTasks(true)
                 .addTask(() -> System.out.println("Task 1"))
                 .addTask(() -> System.out.println("Task 2"))
                 .addTask(() -> {
@@ -48,8 +48,6 @@ public class CFThreadTest {
                 })
                 .addTask(() -> System.out.println("Task 4"))
                 .execute();
-
-        thread.waitingForTasksDone();
 
         System.out.println("all tasks done");
     }
