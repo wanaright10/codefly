@@ -3,7 +3,9 @@ package com.wanaright.thread;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class CFThreadTest {
 
@@ -39,11 +41,7 @@ public class CFThreadTest {
                 .addTask(() -> System.out.println("Task 1"))
                 .addTask(() -> System.out.println("Task 2"))
                 .addTask(() -> {
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        // nothing
-                    }
+                    CFThread.sleep(2000, false);
                     System.out.println("Task 3");
                 })
                 .addTask(() -> System.out.println("Task 4"))
@@ -52,12 +50,12 @@ public class CFThreadTest {
         System.out.println("all tasks done");
     }
 
-    //    @Test
-//    public void sleep() {
-//        LocalDateTime now = LocalDateTime.now();
-//
-//        CFThread.sleep(TimeUnit.SECONDS.toMillis(3), false);
-//
-//        Assert.assertTrue(now.plusSeconds(3).isBefore(LocalDateTime.now()));
-//    }
+    @Test
+    public void sleep() {
+        LocalDateTime now = LocalDateTime.now();
+
+        CFThread.sleep(TimeUnit.SECONDS.toMillis(3), false);
+
+        Assert.assertTrue(now.plusSeconds(3).isBefore(LocalDateTime.now()));
+    }
 }

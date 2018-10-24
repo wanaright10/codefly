@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class CFThread {
     private static volatile ThreadLocal<Object> THREAD_LOCAL;
@@ -114,30 +116,30 @@ public class CFThread {
         this.countDownLatch = countDownLatch;
     }
 
-    public void setBlock(boolean block) {
+    private void setBlock(boolean block) {
         this.block = block;
     }
 
-    //    /**
-//     * @param releaseCPU if false means thread will keep running,
-//     *                   if true means release cup resource, other thread can take cpu resource and running
-//     */
-//    public static void sleep(long mills, boolean releaseCPU) {
-//        try {
-//            if (releaseCPU) {
-//                Thread.sleep(mills);
-//            } else {
-//                long weakTime = System.currentTimeMillis() + mills;
-//                while (true) {
-//                    if (System.currentTimeMillis() >= weakTime) {
-//                        break;
-//                    }
-//                }
-//            }
-//        } catch (InterruptedException e) {
-//            //nothing
-//        }
-//    }
+    /**
+     * block current thread for a while
+     *
+     * @param releaseCPU if false means thread will keep running, release lock
+     *                   if true means release cup resource, other thread can take cpu resource and running, keep lock
+     */
+    public static void sleep(long mills, boolean releaseCPU) {
+        try {
+            if (releaseCPU) {
+                Thread.sleep(mills);
+            } else {
+                ReentrantLock lock = new ReentrantLock();
+                Condition condition = lock.newCondition();
+                lock.lockInterruptibly();
+                condition.await(mills, TimeUnit.MILLISECONDS);
+            }
+        } catch (InterruptedException e) {
+            //nothing
+        }
+    }
 
     private static void newThreadLocal() {
         if (THREAD_LOCAL == null) {
