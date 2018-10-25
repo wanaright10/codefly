@@ -4,6 +4,11 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 cat ${CURRENT_DIR}/mac_switch_java_installer.sh | tail -43 > ~/.my_cmd
 echo "source ~/.my_cmd" >> /etc/profile
 export NO_JDK_PATH=$PATH
+echo "Command: use"
+echo "Version: 1.0"
+echo "***************************"
+echo "***** Install Success *****"
+echo "***************************"
 use() {
     JDK_HOME_PRE=/Library/Java/JavaVirtualMachines/
 
