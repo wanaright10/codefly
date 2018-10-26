@@ -1,4 +1,4 @@
-package com.wanaright.map;
+package code.fly.map;
 
 import java.util.ArrayList;
 import java.util.List;

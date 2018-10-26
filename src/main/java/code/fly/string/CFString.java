@@ -1,4 +1,4 @@
-package com.wanaright.string;
+package code.fly.string;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;

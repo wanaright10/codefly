@@ -1,4 +1,4 @@
-package com.wanaright.date;
+package code.fly.date;
 
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,4 +1,4 @@
-package com.wanaright.thread;
+package code.fly.thread;
 
 import org.junit.Assert;
 import org.junit.Test;

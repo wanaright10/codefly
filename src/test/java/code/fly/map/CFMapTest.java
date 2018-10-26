@@ -1,4 +1,4 @@
-package com.wanaright.map;
+package code.fly.map;
 
 import org.junit.Assert;
 import org.junit.Test;

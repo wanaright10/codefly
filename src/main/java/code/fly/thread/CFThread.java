@@ -1,4 +1,4 @@
-package com.wanaright.thread;
+package code.fly.thread;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +18,11 @@ public class CFThread {
         THREAD_LOCAL.set(object);
     }
 
+    /**
+     * we don't need check class type here,
+     * you should know the type you're using.
+     */
+    @SuppressWarnings("unchecked")
     public static <T> T getThreadObject() {
         if (THREAD_LOCAL == null) {
             return null;

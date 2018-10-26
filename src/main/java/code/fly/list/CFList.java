@@ -1,4 +1,4 @@
-package com.wanaright.array;
+package code.fly.list;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -197,7 +197,7 @@ public class CFList {
     }
 
     /**
-     * get difference array items from 'base' which 'reference' doesn't have
+     * get difference list items from 'base' which 'reference' doesn't have
      * i.e. difference([1, 2, 3], [1, 2, 4]) -> [3]
      */
     public static <T> List<T> difference(List<T> base, List<T> reference) {

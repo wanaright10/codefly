@@ -1,4 +1,4 @@
-package com.wanaright.date;
+package code.fly.date;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package com.wanaright.array;
+package code.fly.list;
 
 import org.junit.Assert;
 import org.junit.Test;
